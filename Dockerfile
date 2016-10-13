@@ -11,6 +11,6 @@ RUN apt-get update && \
     env | grep curator > /tmp/cron && \
     cat /tmp/cron > /var/curator.cron && \ 
     echo "* * * * * /usr/bin/curator --config /tmp/config.yaml /tmp/action.yaml >> /var/log/cron.log \n" >> /var/curator.cron && \ 
-    crontab /var/curator.cron && \
+    crontab /var/curator.cron \
     
 CMD tail -f /var/log/cron.log
