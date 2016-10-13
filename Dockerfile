@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER : g6n
 RUN apt-get update && \
-    apt-get install -y wget cron && \
+    apt-get install -y wget vim cron && \
     wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
     echo deb http://packages.elastic.co/curator/4/debian stable main > /etc/apt/sources.list.d/curator.list && \
     apt-get update && \
