@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER : g6n
 RUN apt-get update && \
-    apt-get install -y wget vim cron && \
+    apt-get install -y wget cron && \
     wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add - && \
     echo deb http://packages.elastic.co/curator/4/debian stable main > /etc/apt/sources.list.d/curator.list && \
     apt-get update && \
@@ -10,8 +10,6 @@ RUN apt-get update && \
     echo "client: \n  hosts: \n    - elas \n  port: 9200 \n  url_prefix: \n  use_ssl: False \n  certificate: \n  client_cert: \n  client_key: \n  ssl_no_validate: False \n  http_auth: \n  timeout: 30  \n  master_only: False \n  \nlogging: \n  loglevel: INFO \n  logfile: \n  logformat: default \n  blacklist: ['elasticsearch', 'urllib3'] \n" > /tmp/config.yaml && \
     echo "1 * * * * LC_ALL=C.UTF-8 /usr/bin/curator --config /tmp/config.yaml /tmp/action.yaml >> /var/log/cron.log \n" >> /var/curator.cron && \ 
     crontab /var/curator.cron && \
-    echo "cron.log entry \n" >> /var/log/cron.log && \
-    ls
-    
-    
-CMD tail -f /var/log/cron.log
+    echo "cron.log entry \n" >> /var/log/cron.log
+
+CMD service cron start && tail -f /var/log/cron.log
