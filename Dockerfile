@@ -12,4 +12,4 @@ RUN apt-get update && \
     crontab /var/curator.cron && \
     echo "cron.log entry \n" >> /var/log/cron.log
    
-CMD tail -f /var/log/cron.log
+CMD service cron start && tail -f /var/log/cron.log
