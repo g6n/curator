@@ -6,7 +6,7 @@ RUN apt-get update && \
     echo deb http://packages.elastic.co/curator/4/debian stable main > /etc/apt/sources.list.d/curator.list && \
     apt-get update && \
     apt-get install -y elasticsearch-curator && \
-    apt-get clean
+    apt-get clean && \ 
     echo "1 * * * * LC_ALL=C.UTF-8 /usr/bin/curator --config /tmp/config.yaml /tmp/action.yaml >> /var/log/cron.log \n" >> /var/curator.cron && \ 
     crontab /var/curator.cron && \
     echo "cron.log entry \n" >> /var/log/cron.log
