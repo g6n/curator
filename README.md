@@ -18,20 +18,31 @@ and overwirte the files included in the build.
 
 The default build has the following settings:
 
-action.yaml
+action.yaml:
+
     action 1 looks for indexes named filebeat-*
+    
     that are older than 14 days
+    
     and will delete these
+    
 
     action2 looks for indexes named lpt-*
+    
     that are older then 90 days
+    
     and will delete these
 
 
-  config.yaml
+
+config.yaml:
+
    sets the elasticsearch host to elas
+   
    sets the elasticsearch host port to 9200
+   
    uses no authentication or transport security
+   
    logs INFO messages to the default output (defined in the Dockerfile)
 
 
