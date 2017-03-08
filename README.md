@@ -1,15 +1,31 @@
 # Curator
 
 This Dockerfile is based on Ubuntu 16.04
-It installs curator from the debian 4.0 elastic search repo.
+It installs the latest available curator package from the debian 4.0 elastic search repo.
 
-It runs curator as a daily cron job at 01:01
+It runs curator as a hourly cron job at n:01
 
-It requires 5 environmental variables:
-curator_hosts=<hostnames> e.g. elasticsearch
-curator_port=<portname> e.g. 9200 (only used if hosts do not have a hostname:portname markup
-curator_delete_unit=<unit of time> e.g. days
-curator_delete_unit_count=<amount of unit of time> e.g. 14
-curator_index_prefix=<nameof the index> #e.g. logstash-
+Curator requires two files to run.
+action.yaml and config.yaml
+both these files are included in this repo, but are rather specific.
 
-It assumes a YYYY.MM.DD date format at the end of the index name.
+When using Kubernetes, substitute these files with a configmap that while set the appropiate settings for your indexes
+and overwirte the files included in the build.
+
+The default build has the following settings:
+  action.yaml
+    action 1 looks for indexes named filebeat-*
+    that are older than 14 days
+    and will delete these
+
+    action2 looks for indexes named lpt-*
+    that are older then 90 days
+    and will delete these
+
+  config.yaml
+   sets the elasticsearch host to elas
+   sets the elasticsearch host port to 9200
+   uses no authentication or transport security
+   logs INFO messages to the default output (defined in the Dockerfile)
+
+
