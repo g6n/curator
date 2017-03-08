@@ -12,5 +12,5 @@ RUN apt-get update && \
     echo "cron.log entry \n" >> /var/log/cron.log
 
 ADD config.yaml /tmp/config.yaml
-ADD actions.yaml /tmp/actions.yaml
+ADD action.yaml /tmp/action.yaml
 CMD service cron start && tail -f /var/log/cron.log
