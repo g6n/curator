@@ -1,0 +1,45 @@
+actions:   
+1: 
+  action: delete_indices 
+  description: \"Delete filebeat indices\" 
+  options: \n      timeout_override: 
+  continue_if_exception: False 
+  disable_action: False 
+  filters: 
+  - filtertype: pattern 
+    kind: prefix 
+    value: filebeat- 
+    exclude: 
+  - filtertype: age 
+    source: name 
+    direction: older 
+    timestring: '%Y.%m.%d' 
+    unit: days 
+    unit_count: 14 
+    field: 
+    stats_result: 
+    epoch: 
+    exclude: False 
+	
+2: 
+  action: delete_indices 
+  description: \"Delete LPT indices\" 
+  options: \n      timeout_override: 
+  continue_if_exception: False 
+  disable_action: False 
+  filters: 
+  - filtertype: pattern 
+    kind: prefix 
+    value: lpt- 
+    exclude: 
+  - filtertype: age 
+    source: name 
+    direction: older 
+    timestring: '%Y.%m.%d' 
+    unit: days 
+    unit_count: 90 
+    field: 
+    stats_result: 
+    epoch: 
+    exclude: False 
+
