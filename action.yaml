@@ -21,7 +21,6 @@ actions:
     stats_result: 
     epoch: 
     exclude: False 
-	
 2: 
   action: delete_indices 
   description: \"Delete LPT indices\" 
