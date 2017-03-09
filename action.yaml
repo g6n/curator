@@ -2,7 +2,8 @@ actions:
 1: 
   action: delete_indices 
   description: \"Delete filebeat indices\" 
-  options: \n      timeout_override: 
+  options: 
+  timeout_override: 
   continue_if_exception: False 
   disable_action: False 
   filters: 
@@ -24,7 +25,8 @@ actions:
 2: 
   action: delete_indices 
   description: \"Delete LPT indices\" 
-  options: \n      timeout_override: 
+  options: 
+  timeout_override: 
   continue_if_exception: False 
   disable_action: False 
   filters: 
