@@ -11,6 +11,6 @@ RUN apt-get update && \
     crontab /var/curator.cron && \
     echo "cron.log entry \n" >> /var/log/cron.log
 
-ADD config.yaml /tmp/config.yaml && \
-    action.yaml /tmp/action.yaml
+ADD config.yaml /tmp/config.yaml
+ADD action.yaml /tmp/action.yaml
 CMD service cron start && tail -f /var/log/cron.log
