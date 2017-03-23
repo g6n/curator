@@ -9,6 +9,7 @@ RUN apt-get update && \
     apt-get install -y elasticsearch-curator && \
     apt-get clean && \ 
     crontab /var/curator.cron 
+    touch /var/log/cron.log
 COPY config.yaml /tmp/
 COPY action.yaml /tmp/
 CMD service cron start && tail -f /var/log/cron.log
